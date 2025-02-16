@@ -131,6 +131,8 @@ var excludedExtensions = map[string]bool{
 	".yaml": true,
 	".html": true,
 	".ico":  true,
+	".csv":  true,
+    ".pkl":  true,
 }
 
 var excludedFileNames = map[string]bool{
