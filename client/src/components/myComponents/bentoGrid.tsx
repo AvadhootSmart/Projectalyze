@@ -39,7 +39,7 @@ export const BentoGrid = ({
         >
           <div className="text-4xl font-bold sm:hidden">Rating</div>
           {/* present the grades using stars rather than words */}
-          <StarRating />
+          <StarRating rating={overall_rating.rating} />
         </MagicCard>
       </div>
       <MagicCard
