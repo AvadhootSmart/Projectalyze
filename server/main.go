@@ -75,34 +75,32 @@ func main() {
 		if err != nil {
 			log.Printf("Couldnt convert to json: %v", err)
 			return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
-				"error": err,
+				"error": err.Error(),
 			})
 
 		}
 
-		// log.Println("Response: %v", fileJsonData)
+		// log.Println("Response: %s", fileJsonData)
 
 		inputString := string(fileJsonData)
+
+		log.Println(inputString)
 
 		ratingResponse, err := handlers.GenerateRating(inputString, GEMINI_API_KEY)
 		if err != nil {
 			return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
-				"error": "Error generating docx",
+				"message": "Error generating docx",
+				"error":   err.Error(),
 			})
 		}
 
 		log.Println("Response: %v", ratingResponse)
 
-		// return c.JSON(fiber.Map{
-		// 	"message": "Success",
-		// 	ratingResponse,
-		// })
-
 		return c.JSON(ratingResponse)
 
 		// return c.JSON(fiber.Map{
-		// 	"message": "Success",
-		// 	"data":    fileData,
+		// 	// "message": "Success",
+		// 	"data": inputString,
 		// })
 	})
 
@@ -132,7 +130,7 @@ var excludedExtensions = map[string]bool{
 	".html": true,
 	".ico":  true,
 	".csv":  true,
-    ".pkl":  true,
+	".pkl":  true,
 }
 
 var excludedFileNames = map[string]bool{
