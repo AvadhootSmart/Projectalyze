@@ -6,6 +6,7 @@ import (
 	"log"
 	"os"
 	"path/filepath"
+	"strings"
 
 	"projectalyze/handlers"
 
@@ -282,10 +283,12 @@ func processRepositoryFiles(basePath string) map[string][]string {
 		}
 
 		if d.IsDir() {
-			if d.Name() == ".git" {
+			filename := d.Name()
+			if strings.HasPrefix(filename, ".") {
 				log.Printf("Skipping directory: %v", path)
 				return filepath.SkipDir
 			}
+
 			return nil
 		}
 

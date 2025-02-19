@@ -10,17 +10,7 @@ import { cn } from "@/lib/utils";
 import { urlSchema } from "@/schemas/url.schema";
 import { toast } from "sonner";
 import { BentoGrid } from "@/components/myComponents/bentoGrid";
-
-interface Data {
-  summary: string;
-  overall_rating: string;
-  strengths: string;
-  weaknesses: string;
-  cq_rating: string;
-  readability_rating: string;
-  maintainability_rating: string;
-  improvements: string;
-}
+import { Data } from "@/schemas/ratingResponse.schema";
 
 export default function Home() {
   const [url, setUrl] = useState<string>("");
@@ -58,6 +48,11 @@ export default function Home() {
           repo_url: url,
         },
       );
+
+      if (response.status === 500) {
+        toast.error("Error Processing Repository");
+        return;
+      }
 
       setData(response.data);
       // setLoading(false);
@@ -100,19 +95,19 @@ export default function Home() {
           />
         </m.div>
         <div className="fixed lg:p-10 sm:p-5 top-0 left-0 w-full backdrop-blur z-[150]">
-          <h1 className="text-white text-2xl top-10 left-10 ">
-            Project_alyze
-          </h1>
+          <h1 className="text-white text-2xl top-10 left-10 ">Project_alyze</h1>
         </div>
         {data ? (
-          <BentoGrid
-            projectName={projectName}
-            summary={data.summary}
-            rating={data.overall_rating}
-            strengths={data.strengths}
-            improvements={data.improvements}
-            weaknesses={data.weaknesses}
-          />
+          <div className="mt-10">
+            <BentoGrid
+              projectName={projectName}
+              summary={data.summary}
+              overall_rating={data.overall_rating}
+              strengths={data.strengths}
+              improvements={data.improvements}
+              weaknesses={data.weaknesses}
+            />
+          </div>
         ) : (
           <div>
             <h1 className="sm:mb-20 lg:text-5xl text-center sm:text-4xl text-white ">
