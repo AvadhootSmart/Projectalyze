@@ -1,4 +1,4 @@
-import { Rating } from "./ratings";
+import { Rating } from "@/types/ratings";
 
 export interface RatingResponse {
   summary: string;
