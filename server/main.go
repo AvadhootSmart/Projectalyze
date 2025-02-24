@@ -50,7 +50,7 @@ func main() {
 	app.Post("/process-repo", func(c *fiber.Ctx) error {
 
 		body := c.Body()
-		log.Println("Request: %s", string(body))
+		log.Printf("Request: %v", string(body))
 
 		type Request struct {
 			RepoURL string `json:"repo_url"`
