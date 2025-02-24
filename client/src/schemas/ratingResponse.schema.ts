@@ -1,6 +1,6 @@
 import { Rating } from "./ratings";
 
-export interface Data {
+export interface RatingResponse {
   summary: string;
   complexity: string;
   improvements: string[];

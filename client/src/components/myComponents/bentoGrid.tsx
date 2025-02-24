@@ -2,7 +2,6 @@ import { useTheme } from "next-themes";
 import React from "react";
 import { MagicCard } from "../magicui/magic-card";
 import { Rating } from "@/types/ratings";
-import { IconStarFilled } from "@tabler/icons-react";
 import { StarRating } from "./starRating";
 
 interface BentoGridProps {

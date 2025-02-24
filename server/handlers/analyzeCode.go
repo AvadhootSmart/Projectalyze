@@ -52,7 +52,8 @@ func GenerateRating(input, apiKey string) (*RatingResponse, error) {
 		Required: []string{"summary", "overall_rating", "complexity_rating", "strengths", "weaknesses", "improvements", "cq_rating", "maintainability_rating", "readability_rating"},
 		Properties: map[string]*genai.Schema{
 			"summary": &genai.Schema{
-				Type: genai.TypeString,
+				Type:        genai.TypeString,
+				Description: "Provide a concise summary of the codebase, highlighting its major features, core functionality, and purpose. Focus on key components, technologies used, and how the system operates.",
 			},
 			"overall_rating": &genai.Schema{
 				Type:     genai.TypeObject,
