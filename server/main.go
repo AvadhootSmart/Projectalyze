@@ -288,6 +288,10 @@ func processRepositoryFiles(basePath string) map[string][]string {
 				log.Printf("Skipping directory: %v", path)
 				return filepath.SkipDir
 			}
+			if filename == "node_modules" {
+				log.Printf("Skipping directory: %v", path)
+				return filepath.SkipDir
+			}
 
 			return nil
 		}
